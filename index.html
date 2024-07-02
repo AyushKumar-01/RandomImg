@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>API</title>
+    <style>
+      h2 {
+        text-align: center;
+      }
+      .main-container {
+        text-align: center;
+      }
+      #img {
+        background-size: contain;
+        width: 630px;
+        height: 520px;
+        border: 5px solid black;
+        margin: 18px;
+      }
+      #btn {
+        color: white;
+        background-color: rgb(61, 192, 61);
+        border: 1px solid black;
+        border-radius: 7px;
+        padding: 5px;
+        font-size: 1.1rem;
+      }
+      #btn:hover {
+        cursor: pointer;
+        background-color: rgb(103, 228, 103);
+      }
+
+      @media screen and (max-width: 400px) {
+        .main-container {
+          display: flex;
+          align-items: center;
+          flex-direction: column;
+        }
+        #img {
+          height: 70vh;
+          width: 90vw;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Random Image Generator</h2>
+    <section class="main-container">
+      <div id="quotes"></div>
+      <div class="img-container">
+        <img id="img" src="" alt="" srcset="" />
+      </div>
+      <button id="btn">show image</button>
+    </section>
+    <script src="index.js"></script>
+    <script>
+      const url = "https://picsum.photos/200";
+      const btn = document.querySelector("#btn");
+      const getImg = () => {
+        fetch(url)
+          .then((res) => {
+            document.getElementById("img").src = res.url;
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      };
+      btn.addEventListener("click", getImg);
+    </script>
+  </body>
+</html>
